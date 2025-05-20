@@ -9,11 +9,13 @@ public class FruitSpawner : MonoBehaviour
 
     private GameObject currentFruit;
     private Camera mainCamera;
+    private UiGameManager UiGameManager;
 
     void Start()
     {
         mainCamera = Camera.main;
         SpawnNewFruit();
+        UiGameManager = GameObject.Find("UIGameManager").GetComponent<UiGameManager>();
     }
 
     void Update()
