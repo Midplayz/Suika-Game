@@ -5,6 +5,7 @@ public class Fruit : MonoBehaviour
 {
     [field: Header("Fruit Properties")]
     public int fruitType;
+    public int merageValue;
     public bool hasDropped = false;
 
     private Rigidbody2D rb;
@@ -14,9 +15,16 @@ public class Fruit : MonoBehaviour
 
     private List<Fruit> overlappingSameTypeFruits = new();
 
+    private UiGameManager uigameManager;
+    private AudioManager audioManager;
+    private bool isDropSFx = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        uigameManager = GameObject.Find("UIGameManager").GetComponent<UiGameManager>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        isDropSFx = false; // Reset the drop SFX flag at the start
     }
 
     private void Update()
@@ -30,6 +38,7 @@ public class Fruit : MonoBehaviour
                 if (stillTimer >= settleCheckTime)
                 {
                     hasDropped = true;
+
                 }
             }
             else
@@ -55,6 +64,12 @@ public class Fruit : MonoBehaviour
         if (other != null && other.fruitType == fruitType && !overlappingSameTypeFruits.Contains(other))
         {
             overlappingSameTypeFruits.Add(other);
+        }
+        // Play drop SFX immediately on first touch
+        if (!hasDropped && isDropSFx == false)
+        {
+            audioManager.PlayDropSfx();
+            isDropSFx = true; // Mark as dropped to avoid multiple SFX
         }
     }
 
@@ -97,6 +112,9 @@ public class Fruit : MonoBehaviour
         if (nextType < GameManager.Instance.fruitPrefabs.Length)
         {
             GameManager.Instance.SpawnMergedFruit(fruitType, mergePosition);
+
+            // updating ui 
+            uigameManager.addScore(merageValue);
         }
         else
         {

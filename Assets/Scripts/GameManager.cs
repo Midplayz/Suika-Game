@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public GameObject[] fruitPrefabs; 
-
+    
     private void Awake()
     {
         if (Instance == null)

@@ -166,6 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fruitType: 1
+  merageValue: 10
+  hasDropped: 0
 --- !u!50 &374863399148678117
 Rigidbody2D:
   serializedVersion: 5
