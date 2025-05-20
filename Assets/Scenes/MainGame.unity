@@ -895,6 +895,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1538289064}
+  - component: {fileID: 1538289065}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -918,6 +919,27 @@ Transform:
   - {fileID: 1737716160}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1538289065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538289063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d13618caf1c55e54ca1158828be2507a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fruitPrefabs:
+  - {fileID: 4410720883115214773, guid: 7529e0b214c7dac47b4bcf0dda9d494d, type: 3}
+  - {fileID: 3105645207182986101, guid: b5325c09601507943bab0198a281d71e, type: 3}
+  - {fileID: 6794229018064073061, guid: 2127cd6f9895a144da8b29084b147902, type: 3}
+  - {fileID: 537825198741052415, guid: 6b1463e0ffa2a2c44b948ba0fa50a776, type: 3}
+  - {fileID: 415489073722359080, guid: f878b0637dd86344398977eefc316bdb, type: 3}
+  - {fileID: 8366530974427467743, guid: 7150813cf99ae3a4bb94cbee74514031, type: 3}
+  - {fileID: 2464563770998250105, guid: c2a44d77d57983f49825d3198e4458a0, type: 3}
+  - {fileID: 5288274545031721252, guid: 70c4fb54f782829499d01e1fb3485500, type: 3}
 --- !u!1 &1737716159
 GameObject:
   m_ObjectHideFlags: 0

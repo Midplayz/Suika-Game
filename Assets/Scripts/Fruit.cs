@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Fruit : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Fruit : MonoBehaviour
     private float stillTimer = 0f;
     private float velocityThreshold = 0.05f;
 
+    private List<Fruit> overlappingSameTypeFruits = new();
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -18,10 +21,7 @@ public class Fruit : MonoBehaviour
 
     private void Update()
     {
-        if (hasDropped) return;
-
-        // Checks if it's colliding and has stopped moving
-        if (rb.bodyType == RigidbodyType2D.Dynamic && IsTouchingSomething())
+        if (!hasDropped && rb.bodyType == RigidbodyType2D.Dynamic && IsTouchingSomething())
         {
             if (rb.linearVelocity.magnitude < velocityThreshold)
             {
@@ -34,18 +34,76 @@ public class Fruit : MonoBehaviour
             }
             else
             {
-                stillTimer = 0f; // reset timer if moving again
+                stillTimer = 0f;
+            }
+        }
+
+        TryMerge(); // I put this in Update since I want it to check and try just in case it touches another fruit due to random movemement.
+    }
+
+    private bool IsTouchingSomething() //Well, this checks if the fruit is touching something
+    {
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.useTriggers = false;
+        Collider2D[] results = new Collider2D[1];
+        return GetComponent<Collider2D>().Overlap(filter, results) > 0;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Fruit other = collision.gameObject.GetComponent<Fruit>();
+        if (other != null && other.fruitType == fruitType && !overlappingSameTypeFruits.Contains(other))
+        {
+            overlappingSameTypeFruits.Add(other);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        Fruit other = collision.gameObject.GetComponent<Fruit>();
+        if (other != null && overlappingSameTypeFruits.Contains(other))
+        {
+            overlappingSameTypeFruits.Remove(other);
+        }
+    }
+
+    private void TryMerge()
+    {
+        if (!hasDropped) return;
+
+        for (int i = overlappingSameTypeFruits.Count - 1; i >= 0; i--)
+        {
+            Fruit other = overlappingSameTypeFruits[i];
+            if (other == null || !other.hasDropped) continue;
+
+            if (fruitType == other.fruitType)
+            {
+                // Avoids Double merging cuz that's bad
+                if (this.GetInstanceID() < other.GetInstanceID())
+                {
+                    MergeWith(other);
+                }
+                overlappingSameTypeFruits.Remove(other);
+                break;
             }
         }
     }
 
-    private bool IsTouchingSomething()
+    private void MergeWith(Fruit other)
     {
-        // Check if the fruit is touching anything like the container or other fruits or something
-        ContactFilter2D filter = new ContactFilter2D();
-        filter.useTriggers = false;
-        Collider2D[] results = new Collider2D[1];
+        Vector2 mergePosition = (transform.position + other.transform.position) / 2f;
+        int nextType = fruitType + 1;
 
-        return GetComponent<Collider2D>().Overlap(filter, results) > 0;
+        if (nextType < GameManager.Instance.fruitPrefabs.Length)
+        {
+            GameManager.Instance.SpawnMergedFruit(fruitType, mergePosition);
+        }
+        else
+        {
+            Debug.Log("Max level fruit merged! Destroying both.");
+        }
+
+        Destroy(other.gameObject);
+        Destroy(this.gameObject);
     }
 }

@@ -33,7 +33,7 @@ public class FruitSpawner : MonoBehaviour
 
     void SpawnNewFruit()
     {
-        int rand = Random.Range(0, fruitPrefabs.Length);
+        int rand = Random.Range(0, fruitPrefabs.Length - 2); // I subtracted two cuz big fruits, better not to spawn them
         currentFruit = Instantiate(fruitPrefabs[rand], spawnLineTop.position, Quaternion.identity);
 
         Rigidbody2D rb = currentFruit.GetComponent<Rigidbody2D>();
