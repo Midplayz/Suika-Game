@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fruitType: 4
-  merageValue: 20
+  mergeValue: 20
   hasDropped: 0
 --- !u!50 &6903967862640348534
 Rigidbody2D:

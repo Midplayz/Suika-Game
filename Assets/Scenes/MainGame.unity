@@ -1811,7 +1811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &972493490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2146,7 +2146,7 @@ MonoBehaviour:
   scoreText: {fileID: 663715357}
   isGameOver: 0
   gameoverUIParent: {fileID: 2104820831}
-  restartButton: {fileID: 0}
+  restartButton: {fileID: 536608208}
 --- !u!1 &1737716159
 GameObject:
   m_ObjectHideFlags: 0
