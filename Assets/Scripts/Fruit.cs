@@ -5,7 +5,7 @@ public class Fruit : MonoBehaviour
 {
     [field: Header("Fruit Properties")]
     public int fruitType;
-    public int merageValue;
+    public int mergeValue;
     public bool hasDropped = false;
 
     private Rigidbody2D rb;
