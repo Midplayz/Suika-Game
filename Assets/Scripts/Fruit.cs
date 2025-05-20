@@ -114,7 +114,7 @@ public class Fruit : MonoBehaviour
             GameManager.Instance.SpawnMergedFruit(fruitType, mergePosition);
 
             // updating ui 
-            uigameManager.addScore(merageValue);
+            uigameManager.addScore(mergeValue);
         }
         else
         {
