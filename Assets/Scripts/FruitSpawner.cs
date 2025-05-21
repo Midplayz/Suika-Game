@@ -3,9 +3,10 @@ using UnityEngine;
 public class FruitSpawner : MonoBehaviour
 {
     [field: Header("Spawning Values")]
-    public GameObject[] fruitPrefabs;
-    public Transform spawnLineTop;    
-    public float slideRange = 2.5f;   
+    [SerializeField] private GameObject[] fruitPrefabs;
+    [SerializeField] private Transform spawnLineTop;
+    [SerializeField] private float slideRange = 2.5f;
+    [SerializeField] private Transform fruitsContainer;
 
     private GameObject currentFruit;
     private Camera mainCamera;
@@ -34,7 +35,7 @@ public class FruitSpawner : MonoBehaviour
     void SpawnNewFruit()
     {
         int rand = Random.Range(0, fruitPrefabs.Length - 2); // I subtracted two cuz big fruits, better not to spawn them
-        currentFruit = Instantiate(fruitPrefabs[rand], spawnLineTop.position, Quaternion.identity);
+        currentFruit = Instantiate(fruitPrefabs[rand], spawnLineTop.position, Quaternion.identity, fruitsContainer);
 
         Rigidbody2D rb = currentFruit.GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;

@@ -2147,7 +2147,7 @@ GameObject:
   - component: {fileID: 1538289064}
   - component: {fileID: 1538289065}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Game Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2497,6 +2497,7 @@ MonoBehaviour:
   - {fileID: 5288274545031721252, guid: 70c4fb54f782829499d01e1fb3485500, type: 3}
   spawnLineTop: {fileID: 933158651}
   slideRange: 2
+  fruitsContainer: {fileID: 1951353950}
 --- !u!1 &1761419188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2619,7 +2620,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1951353950}
   m_Layer: 0
-  m_Name: FruitsHolder
+  m_Name: Fruits Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
