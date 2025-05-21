@@ -83,20 +83,18 @@ public class Fruit : MonoBehaviour
 
     private void TryMerge()
     {
-        if (!hasDropped) return;
-
         for (int i = overlappingSameTypeFruits.Count - 1; i >= 0; i--)
         {
             Fruit other = overlappingSameTypeFruits[i];
-            if (other == null || !other.hasDropped) continue;
+            if (other == null) continue;
 
             if (fruitType == other.fruitType)
             {
-                // Avoids Double merging cuz that's bad
                 if (this.GetInstanceID() < other.GetInstanceID())
                 {
                     MergeWith(other);
                 }
+
                 overlappingSameTypeFruits.Remove(other);
                 break;
             }
