@@ -1264,7 +1264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 687084594}
   - component: {fileID: 687084595}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bottom_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2194,6 +2194,7 @@ MonoBehaviour:
   isGameOver: 0
   inGameUIManager: {fileID: 1650341404}
   audioManager: {fileID: 596594321}
+  dottedLineTexture: {fileID: 2800000, guid: c9b33e77905bd6745b3b28f0dd34c425, type: 3}
 --- !u!1 &1598766234
 GameObject:
   m_ObjectHideFlags: 0

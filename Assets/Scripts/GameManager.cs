@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [field: Header("References for Fruit")]
     public InGameUIManager inGameUIManager;
     public AudioManager audioManager;
+    public Texture dottedLineTexture;
 
     private void Awake()
     {
