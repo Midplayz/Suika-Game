@@ -9,18 +9,16 @@ public class FruitSpawner : MonoBehaviour
 
     private GameObject currentFruit;
     private Camera mainCamera;
-    private UiGameManager UiGameManager;
 
     void Start()
     {
         mainCamera = Camera.main;
         SpawnNewFruit();
-        UiGameManager = GameObject.Find("UIGameManager").GetComponent<UiGameManager>();
     }
 
     void Update()
     {
-        if (currentFruit != null)
+        if (!GameManager.Instance.isGameOver && currentFruit != null)
         {
             Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             float clampedX = Mathf.Clamp(mousePos.x, -slideRange, slideRange);
@@ -54,6 +52,6 @@ public class FruitSpawner : MonoBehaviour
         col.enabled = true;
 
         currentFruit = null;
-        Invoke(nameof(SpawnNewFruit), 0.5f);
+        Invoke(nameof(SpawnNewFruit), 0.75f);
     }
 }

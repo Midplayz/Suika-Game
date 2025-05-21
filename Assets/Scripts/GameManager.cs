@@ -5,7 +5,12 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public GameObject[] fruitPrefabs; 
-    
+    public bool isGameOver = false; 
+
+    [field: Header("References for Fruit")]
+    public InGameUIManager inGameUIManager;
+    public AudioManager audioManager;
+
     private void Awake()
     {
         if (Instance == null)

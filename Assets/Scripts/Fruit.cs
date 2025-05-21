@@ -15,16 +15,16 @@ public class Fruit : MonoBehaviour
 
     private List<Fruit> overlappingSameTypeFruits = new();
 
-    private UiGameManager uigameManager;
+    private InGameUIManager inGameUIManager;
     private AudioManager audioManager;
     private bool isDropSFx = false;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        uigameManager = GameObject.Find("UIGameManager").GetComponent<UiGameManager>();
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        isDropSFx = false; // Reset the drop SFX flag at the start
+        isDropSFx = false;
+        inGameUIManager = GameManager.Instance.inGameUIManager;
+        audioManager = GameManager.Instance.audioManager;
     }
 
     private void Update()
@@ -38,7 +38,6 @@ public class Fruit : MonoBehaviour
                 if (stillTimer >= settleCheckTime)
                 {
                     hasDropped = true;
-
                 }
             }
             else
@@ -114,7 +113,7 @@ public class Fruit : MonoBehaviour
             GameManager.Instance.SpawnMergedFruit(fruitType, mergePosition);
 
             // updating ui 
-            uigameManager.addScore(mergeValue);
+            inGameUIManager.addScore(mergeValue);
         }
         else
         {

@@ -1,14 +1,13 @@
+using TMPro;
 using UnityEngine;
 
 
 public class GameOverTrigger : MonoBehaviour
 {
-    private UiGameManager uigameManager;
-    private void Awake()
-    {
-        uigameManager = GameObject.Find("UIGameManager").GetComponent<UiGameManager>();
-    
-    }
+    [field: Header("Game Over Stuff")]
+    [field: SerializeField] private TextMeshProUGUI finalScoreText;
+    [field: SerializeField] private InGameUIManager inGameUIManager;
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Fruit"))
@@ -16,13 +15,11 @@ public class GameOverTrigger : MonoBehaviour
             Fruit fruit = other.GetComponent<Fruit>();
             if (fruit != null && fruit.hasDropped)
             {
-                Time.timeScale = 0;
-                Debug.Log("Game Over!");
-                enabled = false; // this will prevent repeated triggers so the script doesn't run continuously (Placeholder for now!!)
-                uigameManager.isGameOver = true; // Set the game over state in the UI manager
-               
+                enabled = false;
+
+                GameManager.Instance.isGameOver = true;
+                finalScoreText.text = "Final Score: " + inGameUIManager.ReturnScore().ToString();
             }
         }
     }
-
 }
