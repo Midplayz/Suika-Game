@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class InGameUIManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
+    public int score ;
     private int totalScore ;
     public GameObject gameOverUIParent;
     public Button restartButton;
@@ -22,9 +23,10 @@ public class InGameUIManager : MonoBehaviour
     {
         EnablingUI();
     }
-    public void addScore(int score)
+    public void addScore(int Score)
     {
-        totalScore = totalScore + score;
+        this.score = Score;
+        totalScore = totalScore + Score;
         scoreText.text = "Score: " + totalScore.ToString();
     }
     public void RestartButtonFunction()
