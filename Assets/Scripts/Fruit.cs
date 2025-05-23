@@ -115,10 +115,10 @@ public class Fruit : MonoBehaviour
         }
         else
         {
-            Debug.Log("Max level fruit merged! Destroying both.");
+            //Debug.Log("Max level fruit merged! Destroying both.");
         }
 
-        Destroy(other.gameObject);
-        Destroy(this.gameObject);
+       Destroy(other.gameObject);
+       Destroy(this.gameObject);
     }
 }
